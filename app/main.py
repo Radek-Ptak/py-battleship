@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Iterable
 
 
 class Deck:
@@ -64,7 +64,10 @@ class Ship:
 
 
 class Battleship:
-    def __init__(self, ships: tuple[int, int]) -> None:
+    def __init__(
+            self,
+            ships: Iterable[tuple[tuple[int, int], tuple[int, int]]]
+    ) -> None:
 
         self.ships = [Ship(start, end) for (start, end) in ships]
         self.field = {}
