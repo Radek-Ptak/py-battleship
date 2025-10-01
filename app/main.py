@@ -50,8 +50,12 @@ class Ship:
     def fire(self, row: int, column: int) -> str:
         deck = self.get_deck(row, column)
 
-        if deck is None or not deck.is_alive:
+        if deck is None:
             return "Miss!"
+        elif not deck.is_alive:
+            if self.is_drowned:
+                return "Sunk!"
+            return "Hit!"
         deck.is_alive = False
         self.is_drowned = all(not d.is_alive for d in self.decks)
         if self.is_drowned:
